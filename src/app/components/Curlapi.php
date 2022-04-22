@@ -2,7 +2,6 @@
 
 namespace App\Components;
 use GuzzleHttp\Client;
-use SimpleXMLElement;
 
 class Curlapi
 {
@@ -22,14 +21,12 @@ class Curlapi
     {
         $url = "http://api.weatherapi.com/v1/history.json?key=0bab7dd1bacc418689b143833220304&q=$city&dt=2010-01-01";
         $response = $this->getUrl($url);
-        return $response;
+        return ($response);
     }
     public function getCurrent($city)
     {
-        
         $url = "http://api.weatherapi.com/v1/current.json?key=0bab7dd1bacc418689b143833220304&q=$city&aqi=no";
-        $response = $this->getUrl($url);
-        return $response;
+        return $this->getUrl($url);
     }
     public function getAstronomy($city)
     {
@@ -63,11 +60,13 @@ class Curlapi
     }
     public function getUrl($url)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        $res = curl_exec($ch);
-        return json_decode($res, true);
-        curl_close($ch);
+        require BASE_PATH.'/vendor/autoload.php';
+        $client = new Client([
+            'header' => ['my-header' => 'get-header']
+        ]);
+
+        $response = $client->request("POST", $url);
+        $body = $response->getBody();
+        return json_decode($body, true);
     }
 }
