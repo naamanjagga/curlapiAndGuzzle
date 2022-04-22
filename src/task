@@ -1,0 +1,16 @@
+Use weather api https://www.weatherapi.com/docs/ to create following application
+
+Once we click on any location then we will land on its detail page with current weather information
+At location detail page we need to have mutiple buttons
+Current weather
+Forecast
+History
+Time Zone
+Sports
+Astronomy
+Weather Alerts
+Air Quality
+All the buttons have its own meaning, so do needful
+After basic cURL, do same task with Guzzle library
+
+Note: API KEY = 0bab7dd1bacc418689b143833220304

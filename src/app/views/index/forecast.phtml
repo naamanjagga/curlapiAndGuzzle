@@ -1,0 +1,158 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Current weather</h5>
+          <form action="weather" method="POST">
+
+            <button name="btn" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Forecast</h5>
+          <form action="forecast" method="POST">
+
+            <button name="forecast" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">History</h5>
+          <form action="history" method="POST">
+
+            <button name="history" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Time Zone</h5>
+          <form action="timezone" method="POST">
+
+            <button name="timezone" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Sports</h5>
+          <form action="sports" method="POST">
+
+            <button name="sports" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Astronomy</h5>
+          <form action="astronomy" method="POST">
+
+            <button name="astronomy" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Weather Alerts</h5>
+          <form action="alert" method="POST">
+
+            <button name="alert" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Air Quality</h5>
+          <form action="quality" method="POST">
+
+            <button name="quality" value="<?php echo $response['location']['name']; ?>" class="btn btn-outline-primary btn-sm">
+              click me
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4 mb-4">
+    <h4>Location</h4>
+    <?php
+    echo '<table>';
+    foreach ($response['location'] as $l => $v) {
+      echo '<tr><td>' . $l . '</td><td>' . $v . '</td></tr>';
+    }
+    echo '</table>';
+    ?>
+  </div>
+  <div class="col-lg-4 mb-4">
+    <h4>current</h4>
+    <?php
+    echo '<table>';
+    foreach ($response['current'] as $l => $v) {
+
+      if ($l == 'condition') {
+        continue;
+      } else {
+
+        echo '<tr><td>' . $l . '</td><td>' . $v . '</td></tr>';
+      }
+    }
+    echo '</table>';
+    ?>
+  </div>
+  <div class="col-lg-4 mb-4">
+    <h4>Forecast</h4>
+    <?php
+    echo '<table>';
+    
+
+      echo '<tr><td>Date : </td><td>' . $response['forecast']['forecastday'][0]['date'] . '</td></tr>';
+      echo '<tr><td>Time : </td><td>' . $response['forecast']['forecastday'][0]['hour'][0]['time'] . '</td></tr>';
+      echo '<tr><td>Temp in C : </td><td>' . $response['forecast']['forecastday'][0]['hour'][0]['temp_c'] . '</td></tr>';
+      echo '<tr><td>Temp in F : </td><td>' . $response['forecast']['forecastday'][0]['hour'][0]['temp_f'] . '</td></tr>';
+    echo '</table>';
+    ?>
+  </div>
+</div>
